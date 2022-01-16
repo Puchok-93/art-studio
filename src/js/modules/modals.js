@@ -1,5 +1,7 @@
 function modals() {
-    function bindModal(triggerSelector, modalSelector, closeSelector, overlayClose) {
+    let btnPressed = false;
+
+    function bindModal(triggerSelector, modalSelector, closeSelector, destroy = false) {
         const triggers = document.querySelectorAll(triggerSelector);
         const modal = document.querySelector(modalSelector);
         const closeBtn = document.querySelector(closeSelector);
@@ -12,8 +14,15 @@ function modals() {
                     e.preventDefault();
                 }
 
+                btnPressed = true;
+
+                if(destroy) {
+                    trigger.remove();
+                }
+
                 windows.forEach(window => {
                     window.style.display = 'none';
+                    window.classList.add('animated', 'fadeIn');
                 })
 
                 modal.style.display = 'block';
@@ -25,6 +34,7 @@ function modals() {
         closeBtn.addEventListener('click', () => {
             windows.forEach(window => {
                 window.style.display = 'none';
+                window.classList.remove('fadeIn');
             });
 
             modal.style.display = 'none';
@@ -33,7 +43,7 @@ function modals() {
         });
 
         modal.addEventListener('click', (e) => {
-            if(e.target === modal && overlayClose) {
+            if(e.target === modal) {
                 windows.forEach(window => {
                     window.style.display = 'none';
                 });
@@ -57,6 +67,8 @@ function modals() {
                 if (!display) {
                     document.querySelector(selector).style.display = 'block';
                     document.body.style.overflow = 'hidden';
+                    let scroll = calcScroll();
+                    document.body.style.marginRight = `${scroll}px`;
                 }
             });
         }, time);
@@ -77,10 +89,29 @@ function modals() {
         return scrollWidth;
     }
 
+    function openByScroll(selector) {
+        window.addEventListener('scroll', () => {
+
+            // Вариант работы с захватом на старые браузеры
+
+            // let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+            // if (!btnPressed && (window.pageYOffset + document.documentElement.clientHeight >= scrollHeight)) {
+            //     document.querySelector(selector).click();
+            // }
+
+
+            // Вариант работы для современных браузеров
+            if (!btnPressed && (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight)) {
+                document.querySelector(selector).click();
+            }
+        });
+    }
+
     bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
     bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
-
-    showModalByTime('.popup-consultation', 5000)
+    bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
+    openByScroll('.fixed-gift');
+    // showModalByTime('.popup-consultation', 3000);
 };
 
 export default modals;
