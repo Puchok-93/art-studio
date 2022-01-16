@@ -93,3 +93,4 @@ gulp.task("build-prod-js", () => {
 });
 
 gulp.task("default", gulp.parallel("watch", "build"));
+gulp.task("start", gulp.parallel("watch", "build"));
