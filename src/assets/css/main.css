@@ -59,6 +59,11 @@ h3,
 h4 {
   font-family: 'Circe Extra Bold', sans-serif;
 }
+
+.status {
+	text-align: center;
+}
+
 .p15 {
   font-size: 1.5;
 }
@@ -1258,6 +1263,7 @@ h4 {
   transform: translateX(-50%) !important;
   padding: 3rem 6rem 4rem 6rem;
 }
+
 @media (max-width: 1399px) {
   .paints {
     display: none;
