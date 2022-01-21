@@ -4,7 +4,8 @@ import forms from "./modules/forms.js";
 import mask from "./modules/mask.js";
 import showMoreCards from "./modules/show-cards";
 import calc from "./modules/calc.js";
-import filter from "./modules/filter.js"
+import filter from "./modules/filter.js";
+import pictureSize from "./modules/picture.js";
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -17,4 +18,5 @@ window.addEventListener('DOMContentLoaded', () => {
     showMoreCards('.button-styles', '#styles .row');
     calc('#size', '#material', '#options', '.promocode', '.calc-price');
     filter();
+    pictureSize('.sizes-block');
 });
