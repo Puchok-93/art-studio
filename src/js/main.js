@@ -2,6 +2,7 @@ import modals from "./modules/modals.js";
 import sliders from "./modules/sliders.js";
 import forms from "./modules/forms.js";
 import mask from "./modules/mask.js";
+import showMoreCards from "./modules/show-cards";
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -11,4 +12,5 @@ window.addEventListener('DOMContentLoaded', () => {
     sliders('.main-slider-item', 'vertical');
     forms();
     mask('[name="phone"]');
+    showMoreCards('.button-styles', '#styles .row');
 })
