@@ -73,9 +73,9 @@ const filter = () => {
             items.forEach(item => {
                 item.classList.remove('active');
                 target.classList.add('active');
-            })
+            });
         }
-    })
+    });
 
 }
 
