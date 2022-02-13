@@ -6,7 +6,7 @@ const forms = () => {
     const message = {
         loading: 'Загрузка...',
         success: 'Отправлено',
-        error: 'Пошел нах',
+        error: 'Ошибка',
         spinner: 'assets/img/spinner.gif',
         ok: 'assets/img/ok.png',
         fail: 'assets/img/fail.png',
